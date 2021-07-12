@@ -1,0 +1,66 @@
+<html>
+    <head><title>Object Identification</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body background="">
+<h2>
+Object Identifcation
+</h1>
+
+<h2>Hall</h3>
+
+<h3 id="stat">
+
+</h3>
+
+<h4 id="no"></h4>
+
+<button id="bac" onclick="back">Back</button>
+
+<script>
+    mage="";
+status="";
+
+function preload()
+{
+ mage=loadImage("h.jpg");
+}
+
+function setup()
+{
+  canvas=createCanvas(650,400);
+  canvas.center();
+  object_detector=ml5.objectDetector("Cocossd",modelLoaded);
+  document.getElementById("stat").innerHTML="Detecting objects";
+}
+
+function modelLoaded()
+{
+console.log("Model loaded !");
+status=true;
+object_detector.detect(mage,gotResult);
+}
+
+function gotResult(error,results)
+{
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(results);
+  }
+}
+
+function draw()
+{
+ image(mage,0,0,650,400);
+}
+
+function back()
+{
+    window.location="index.html"
+}
+
+</script>
+
+</body>
+</html>
